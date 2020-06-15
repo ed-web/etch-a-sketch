@@ -1,53 +1,87 @@
 const cont = document.getElementById('container');
-const babies = cont.children;
 const reset = document.querySelector('.new-grid');
 const colorChange = document.querySelector('.change-color');
 const tint = document.querySelector('.tint');
-let loopNum = 0;
-let loopSum = 0;
-// takes the users answer and fills the grid with the amount of divs entered
-reset.addEventListener('click', ()=>{
-    const sendNumber = prompt('Enter a new grid size between 1 & 100', '23');
-    if (sendNumber > 100){ prompt("Sorry the entry has to be a number bwttween 1 and 100", 'example -> 56')}
-    loopNum = Number(sendNumber);
-    loopSum = sendNumber**2
+const lighten = document.querySelector('.lighten');
+const eraser = document.querySelector('.eraser');
+const colorSelect = document.querySelector('.colorSelect');
+let babies;
+let loopNum;
+let loopSum;
+let divColor = 'black';
+let border ='none';
 
-    cont.style.gridTemplateColumns = `repeat(${loopNum}, ${10/loopNum}cm)`
-    cont.style.gridTemplateRows = `repeat(${loopNum}, ${10/loopNum}cm)`
+// takes the users answer and fills the grid with the amount of divs entered & leaves the etch trail 
+reset.addEventListener('click', ()=>{
+    cont.innerHTML = ''; // clears the grid so the dives dont layer ontop of each other
+
+    let sendNumber = prompt("Please enter a number between 1-100 \nto determine the squares per side for the grid.")
+    while (sendNumber < 1 || sendNumber > 100 || isNaN(sendNumber)) {
+        sendNumber = prompt("Number invalid. \nPlease enter a number between 1-100.");
+    }
+    
+    loopSum = sendNumber**2
+    cont.style.gridTemplateColumns = `repeat(${sendNumber}, 1fr)` // remember 1fr! had a complicted math formula before it
+    cont.style.gridTemplateRows = `repeat(${sendNumber}, 1fr)`
+
     for (i=0; i<loopSum; i++){
-        let div = document.createElement('div');
-        cont.appendChild(div);
-        }
+        const innerDiv = document.createElement('div');
+        innerDiv.classList.add('div-kids')
+        cont.appendChild(innerDiv);
+        babies = document.querySelectorAll('.div-kids');
+        innerDiv.onmouseover = () => {
+            innerDiv.style.border = `${border}`;
+            innerDiv.style.backgroundColor = `${divColor}`;
+    }}
+    
 });
 
 
 
-// leaves div colored in after run thruuu
-
-
-function keepColor(){
-    for (i = 0; i < loopSum; i++) {
-    babies[i].addEventListener('mouseenter', ()=>{
-        cont.children.style.bachgroundColor = 'green'
-    })
+// randomise the etched color 
+function rand(min, max) {
+    min = parseFloat(min);    
+    max = parseFloat(max);     
+    return parseInt(Math.random() * (max-min+1), 10) + min;
 }
-}
+let h = 1;
+let s = 1;
+let l = 50;
+let a = 1;
+colorChange.addEventListener('click', ()=>{
+    h = rand(1, 360);
+    s = rand(70, 100);
+    l = 50;
+    border = 'none';
+    return divColor = 'hsla(' + h + ',' + s + '%,' + l + '%,' + a +')';
+})
+// select colour
+colorSelect.addEventListener('change', function () {
+    divColor = this.value;
+    border = 'none';
+    
+  });
 
-/*function grid (imput){
-imput * div 
-} */
+// Darken Colour
+tint.addEventListener('click', ()=>{
+    l = l - 5;
+    border = 'none';
+    return divColor = 'hsla(' + h + ',' + s + '%,' + l + '%,' + a +')';
+
+})
+//lighten colour
+lighten.addEventListener('click', ()=>{
+    l = l + 5;
+    border = 'none';
+    return divColor = 'hsla(' + h + ',' + s + '%,' + l + '%,' + a +')';
+})
 
 
+// erase previous
+eraser.addEventListener('click', ()=>{
+    a = 0;
+    border = '';
+    return divColor = 'hsl(' + h + ',' + s + '%,' + l + '%,' + a +')';
+  
+})
 
-
-//creates the nuber of dives needed to fill the grid
-
-
-// function will take in imput and multiply the result by itself to get the grid number
-
-// set the hight and width as standard and the div containers to adjust to a % of the viewport h or w
-
-/*high 90px 
-width 90 px
-columnpx = hight / number of columns
-rowpx = hight / number of rows */

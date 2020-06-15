@@ -5,7 +5,10 @@ body{
 header{
     font-size: 3rem;
     color: rgb(0, 140, 255);;
-    text-align: center;
+    border-bottom: 3px solid rgb(0, 140, 255);
+    display: inline-block;
+    margin: 0 34% 0 ;
+    padding: 0 .5em;
 
 }
 button{
@@ -13,7 +16,6 @@ button{
     border: none;
     border-bottom: 1px solid rgb(0, 140, 255);
     color:   rgb(0, 140, 255);
-    border-radius: 6px;
     font-size: 1em;
     padding-bottom: 6px;
     outline: none;
@@ -52,9 +54,13 @@ button:nth-child(2){
 #container div{
 background-color: none;
 border: .5px solid rgb(170, 217, 255);
+padding-bottom: -5px;
 
 }
-#container div:hover{
-    /*background-color: aqua; */
-    
+
+.colorSelect{
+    background: none;
+    border: none;
+    border-bottom: 2px solid rgb(0, 140, 255);
+    width: 100px;
 }
