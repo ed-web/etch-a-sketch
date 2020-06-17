@@ -5,13 +5,15 @@ const tint = document.querySelector('.tint');
 const lighten = document.querySelector('.lighten');
 const eraser = document.querySelector('.eraser');
 const colorSelect = document.querySelector('.colorSelect');
+const clearGrid = document.querySelector('.clear-grid');
+
 let babies;
 let loopNum;
 let loopSum;
 let divColor = colorSelect.value
 let border ='none';
 
-// takes the users answer and fills the grid with the amount of divs entered & leaves the etch trail 
+// takes the users answer and fills the grid with the amount of divs entered
 reset.addEventListener('click', ()=>{
     cont.innerHTML = ''; // clears the grid so the dives dont layer ontop of each other
 
@@ -36,7 +38,12 @@ reset.addEventListener('click', ()=>{
     
 });
 
-
+// clear grid
+clearGrid.addEventListener('click', ()=>{
+   const erasingColor = Document.querySelector('.div-kids')
+  return  erasingColor.style.backgroundColor = "white";
+   
+})
 
 // randomise the etched color  REMOVED THIS BECAUSE ive added colour selection so it just complecates things. Plus all the colours are there to choose from so why
 // function rand(min, max) {
@@ -84,7 +91,6 @@ function HexToHSL(hex) { // this function converts the value that type color bri
     l = l*100;
     l = Math.round(l);
     h = Math.round(360*h);
-
     return {h, s, l};
 }
 
@@ -92,6 +98,7 @@ function HexToHSL(hex) { // this function converts the value that type color bri
 colorSelect.addEventListener('change', ()=> {
     let color = HexToHSL(colorSelect.value)
     border = 'none'
+    lightNumber = 0
     return divColor = 'hsl(' + color.h + ', ' + color.s + '%, ' + color.l + '%)'
 })
 

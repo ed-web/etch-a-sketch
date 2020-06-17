@@ -57,10 +57,10 @@ body{
 }
 header{
     font-size: 3rem;
-    color: rgb(0, 140, 255);;
+    color: rgb(0, 140, 255);
     border-bottom: 3px solid rgb(0, 140, 255);
     display: inline-block;
-        MARGIN: .6em .6em .6em 0;
+        MARGIN: 1em 0 .7em;
         padding: 0 15px 5px;
 
 }
@@ -73,10 +73,10 @@ h2{
 }
 
 .leftHead{
-    padding: 0 .4rem 5px 
+    padding: 0 0 5px; 
 }
 .rightHead{
-    padding: 0 1.9rem 5px ;
+    padding: 0 0 5px ;
 }
 
 .grid-box{
@@ -152,11 +152,17 @@ padding-bottom: -5px;
     background: none;
     border: none;
     border: 1px solid rgb(0, 140, 255);
-    width: 9em;
-    height: 1.9em;
+    width: 12em;
+    height: 2.1em;
     box-shadow: 3px 3px lightgrey ;
 }
 input:active{
     font-size: .82em;
     box-shadow: none;
 }
+.clear-grid:active  .div-kids{
+
+
+         background-color: purple;
+     
+    }
